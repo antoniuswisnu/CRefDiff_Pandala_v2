@@ -16,7 +16,7 @@ from ldm.models.diffusion.ddpm import LatentDiffusion
 from model.modules import ImplicitPromptModule
 from .spaced_sampler import SpacedSampler
 from img_utils.metrics import LPIPS
-from .adapters import Spade_Adapter, LCA_Adapter, Cat_Adapter
+from .adapters import LCA_Adapter  # Only import what you need
 
 
 # Do forward process for UNetModel with prepared "control" tensors
@@ -83,12 +83,18 @@ class ControlLDM(LatentDiffusion):
         disable_preprocess=False,
         frozen_diff=True,
         use_map=True,
+        adapter_type="LCA",  # Add parameter to choose adapter type
         *args,
         **kwargs,
     ) -> "ControlLDM":
         super().__init__(*args, **kwargs)
-        # instantiate control module
-        self.adapter = LCA_Adapter(use_map=use_map)
+        
+        # instantiate control module based on adapter_type
+        if adapter_type == "LCA":
+            self.adapter = LCA_Adapter(use_map=use_map)
+        else:
+            raise ValueError(f"Unknown adapter type: {adapter_type}. Available: ['LCA']")
+            
         self.lr_key = lr_key
         self.ref_key = ref_key
         self.disable_preprocess = disable_preprocess

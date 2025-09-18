@@ -32,7 +32,6 @@ import torch.nn.functional as F
 
 logger = logging.getLogger("dinov2")
 
-
 def named_apply(
     fn: Callable, module: nn.Module, name="", depth_first=True, include_root=False
 ) -> nn.Module:

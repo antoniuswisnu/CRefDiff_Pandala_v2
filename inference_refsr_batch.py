@@ -26,12 +26,12 @@ def parse_args() -> Namespace:
     )
     parser.add_argument(
         "--config",
-        default="configs/model/refsr_dino.yaml",
+        default="/content/CRefDiff/configs/model/refsr_dino.yaml",
         type=str,
         help="model config path",
     )
     parser.add_argument(
-        "--val_config", type=str, default="configs/dataset/reference_sr_test.yaml"
+        "--val_config", type=str, default="/content/CRefDiff/configs/dataset/reference_sr_test.yaml"
     )
     parser.add_argument(
         "--output",
