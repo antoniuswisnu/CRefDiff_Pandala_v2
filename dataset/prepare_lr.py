@@ -6,7 +6,6 @@ from concurrent.futures import ThreadPoolExecutor
 from tqdm.contrib.concurrent import thread_map
 import cv2
 
-
 def process_image(hr_image_path, sr_image_path):
     hr_image = np.asarray(Image.open(hr_image_path).convert("RGB"))
     sr_image = cv2.resize(
@@ -17,10 +16,9 @@ def process_image(hr_image_path, sr_image_path):
 
     Image.fromarray(sr_image).save(sr_image_path)
 
-
 def main():
-    hr_path = "/mnt/massive/wangce/RefSR_x10/dataset/All_2/train/LR"
-    sr_path = "/mnt/massive/wangce/RefSR_x10/dataset/All_2/train/LR_Ux10"
+    hr_path = "/dataset/All_2/train/LR"
+    sr_path = "/dataset/All_2/train/LR_Ux10"
     hr_image_names = os.listdir(hr_path)
     os.makedirs(sr_path, exist_ok=True)
 
