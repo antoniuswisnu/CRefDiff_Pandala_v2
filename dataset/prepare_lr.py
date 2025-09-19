@@ -17,8 +17,8 @@ def process_image(hr_image_path, sr_image_path):
     Image.fromarray(sr_image).save(sr_image_path)
 
 def main():
-    hr_path = "/dataset/All_2/train/LR"
-    sr_path = "/dataset/All_2/train/LR_Ux10"
+    hr_path = "/content/CRefDiff_Pandala_v2/dataset/ALL_2/LR"
+    sr_path = "/content/CRefDiff_Pandala_v2/dataset/ALL_2/LR_Ux10"
     hr_image_names = os.listdir(hr_path)
     os.makedirs(sr_path, exist_ok=True)
 
